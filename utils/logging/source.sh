@@ -97,7 +97,8 @@ debug() {
 #   Writes verbose message to stdout if DEBUG is set.
 #######################################
 verbose() {
-  [[ -n "${DEBUG:-}" ]] && output_message VERBOSE STDOUT "$@"
+  [[ -n "${DEBUG:-}" ]] || return 0
+  output_message VERBOSE STDOUT "$@"
 }
 
 #######################################

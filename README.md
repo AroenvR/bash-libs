@@ -1,6 +1,7 @@
 # Bash Library
 
-A modular bash library providing useful functions.
+A modular bash library providing useful functions.  
+Adheres to [GitHub's shell styling guide](https://google.github.io/styleguide/shellguide.html) as much as possible.
 
 ## Overview
 
@@ -9,8 +10,10 @@ This library aggregates reusable shell functions organized into focused modules:
 ```plaintext
 <bash_lib_root>/
 ├── utils/              # Utility functions provided by this library.
+│   ├── environment/    # Environment variable utility functions.
+│   ├── file_management/# File management utility functions.
 │   ├── logging/        # Logging utility functions.
-│   └── file_management/# File management utility functions.
+│   └── podman/         # Utilities for the podman library.
 │
 └── source.sh           # This libary's entry point to source.
 ```
