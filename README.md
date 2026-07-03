@@ -23,10 +23,13 @@ Source this library's entry point in your original scripts:
 # Capture the current script's absolute path.
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 
-# Source (import) the project's bash library and provide the library's logging utilities a prefix for traceability.
-LOG_PREFIX="example_logging_prefix" source "$SCRIPT_DIR/../../lib/source.sh"
+# Set a prefix for logging traceability
+LOG_PREFIX="example_logging_prefix"
 
-# Log a message to using the sourced library's utilities.
+# Source (import) the library.
+source "$SCRIPT_DIR/../../lib/source.sh"
+
+# Log a message to using one of the sourced library's utilities.
 log "Starting build process"
 ```
 
