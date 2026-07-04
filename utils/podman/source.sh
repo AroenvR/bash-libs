@@ -20,7 +20,6 @@ require_podman_image() {
   verbose "Checking for required podman image: $image"
   require_arguments 1 "$@"
 
-  # Ensure the `podman` command is available before checking images.
   require_command "podman"
 
   if ! podman image exists "$image" 2>/dev/null; then
@@ -29,7 +28,7 @@ require_podman_image() {
 }
 
 #######################################
-# Run a command inside a temporary Podman container
+# Run a command inside a temporary Podman container as privileged
 #
 # Globals (required environment variables):
 #   IMAGE_REF           - Image reference to run (e.g. myorg/myimage:latest)
@@ -61,6 +60,7 @@ execute_podman_command() {
   require_podman_image "$IMAGE_REF"
 
   podman run --rm \
+    --privileged \
     --env "CONTAINER_LOCALE=$CONTAINER_LOCALE" \
     -v "$HOST_SHARED_DIR:$CONTAINER_MOUNT_DIR:Z" \
     "$IMAGE_REF" \
