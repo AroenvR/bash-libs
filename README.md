@@ -48,3 +48,8 @@ DEBUG=1 source "$SCRIPT_DIR/../../lib/source.sh"
 
 Some utility functions provide path traversal logic. They expect to find a `.git` file/directory or a ROOT marker.  
 If they don't find what they expect to find within 5 traversals or when finding certain files/directories such as `/` starting directories, `.` starting directories or f.ex. a `.bashrc/` file, they will fail.
+
+# Set up as subtree
+```bash
+git subtree add --prefix=lib/bash git@github.com:AroenvR/bash-libs.git main --squash
+```
