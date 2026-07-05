@@ -10,7 +10,7 @@ This library aggregates reusable shell functions organized into focused modules:
 ```plaintext
 <bash_lib_root>/
 ├── __tests__/          # Helpers for this library's testing suites.
-│   └── bootstrap.sh/   # Bootstrapper for a test suites.
+│   └── bootstrap.sh/   # Bootstrapper for test suites.
 │
 ├── utils/              # Utility functions provided by this library.
 │   ├── environment/    # Environment variable utility functions.
@@ -37,17 +37,17 @@ I took the liberty of making a little template:
 
 # Useful globals
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-LOG_PREFIX="${LOG_PREFIX:-ubuntu_server}"
+LOG_PREFIX="${LOG_PREFIX:-script}"
 
 # !!! Edit path to bash library !!!
-BASH_LIBS_SRC="$SCRIPT_DIR/../../lib/bash/source.sh";
-if [[ ! -f "$BASH_LIBS_SRC" ]]; then
-  echo "Failed to find bash library at: $BASH_LIBS_SRC"
+BASH_LIB_SRC="$SCRIPT_DIR/../../lib/bash/source.sh";
+if [[ ! -f "$BASH_LIB_SRC" ]]; then
+  echo "Failed to find bash library at: $BASH_LIB_SRC"
   exit 1
 fi
 
 # Source the library.
-source "$BASH_LIBS_SRC"
+source "$BASH_LIB_SRC"
 source_default_environment "$SCRIPT_DIR/.env.example"
 
 # Log setup success
@@ -60,7 +60,7 @@ log "Executing the $LOG_PREFIX script in directory: $SCRIPT_DIR"
 
 ### Verbose-level Logging
 
-Enable verbose logging by setting the `VERBOSE` variable:
+Enable verbose logging by setting the `VERBOSE` environment variable (`.env` supported):
 
 ```bash
 VERBOSE=1 /path/to/lib/consumer/foo.sh
@@ -72,10 +72,10 @@ This library is easily consumed as a git subtree.
 
 Add new subtree:
 ```bash
-git subtree add --prefix=lib/bash git@github.com:AroenvR/bash-libs.git main --squash
+git subtree add --prefix=lib/bash git@github.com:AroenvR/bash-lib.git main --squash
 ```
 
 Pull subtree changes:
 ```bash
-git subtree pull --prefix=lib/bash git@github.com:AroenvR/bash-libs.git main --squash
+git subtree pull --prefix=lib/bash git@github.com:AroenvR/bash-lib.git main --squash
 ```
